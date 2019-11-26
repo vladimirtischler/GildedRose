@@ -24,10 +24,11 @@ namespace GildedRose
         {
             foreach (var item in items)
             {
-                item.SellIn--;
-
                 if (item.Name == "Sulfuras, Hand of Ragnaros")
+                {
                     continue;
+                }
+                    item.SellIn--;
 
                 if (item.Name == "Aged Brie")
                 {
@@ -35,30 +36,50 @@ namespace GildedRose
 
                     if (item.SellIn <= 0)
                     {
-                        item.Quality += 2;
+                        item.Quality ++;
                     }
 
                 }
                 if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
+                    item.Quality++;
 
                     if (item.SellIn <= 10)
-                        item.Quality += 2;
-
+                    {
+                        item.Quality ++;
+                    }
                     if (item.SellIn <= 5)
-                        item.Quality += 3;
-
+                    {
+                        item.Quality ++;
+                    }
+                    if (item.SellIn <= 0)
+                    {
+                        item.Quality = 0;
+                    }
                 }
                 if (item.Name == "Conjured Mana Cake")
                 {
-                    item.Quality -= 6;
+                    item.Quality -=2;
+                    if (item.SellIn <= 0)
+                    {
+                        item.Quality-=2;
+                    }
                 }
                 if (item.Name == "+5 Dexterity Vest")
-                    item.Quality -= 1;
-            
-                    
-                if (item.Quality > 50) item.Quality = 50;
-                if (item.Quality < 0) item.Quality = 0;
+                {
+                    item.Quality--;
+                    if (item.SellIn <= 0)
+                        item.Quality --;
+                }
+
+                if (item.Name == "Elixir of the Mongoose")
+                {
+                    item.Quality--;
+                    if (item.SellIn <= 0)
+                        item.Quality--;
+                }
+                if (item.Quality >= 50) item.Quality = 50;
+                if (item.Quality <= 0) item.Quality = 0;
             }
         }  
     }
